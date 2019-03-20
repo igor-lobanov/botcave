@@ -1,0 +1,3 @@
+<p><u>Module</u> is used to process scenario episode.</p>
+<p><u>Description</u> describes episode. Used for internal identification.</p>
+<p><u>Filters</u> used to check if episode must be executed. Each filter returns true or false on event payload. If all filters returns true - episode executed, in other case it is skipped. Episode without filters is executed unconditionaly.</p>

@@ -1,0 +1,27 @@
+=pod
+
+=encoding utf8
+
+=head1 MODULE AND HELPER METHODS
+
+=over
+
+=item operation_definition
+
+    my $operation = $c->app->tg_types->operation_definition('StringEqual');
+
+    # equal
+    say $operation->{name};
+
+    # StringEqual
+    say $operation->{id};
+
+    # 0
+    say $operation->{exec}->('PayloadValue', 'ComparisionSample');
+
+    # 1
+    say $operation->{exec}->('Foo', 'Foo');
+
+=back
+
+=cut

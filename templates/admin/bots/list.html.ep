@@ -1,0 +1,103 @@
+% layout 'default';
+% title lang->titles->{'admin:bots'};
+%= include 'include/nav';
+<div id="page-wrapper">
+  <div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="page-header"><%= lang->titles->{'admin:bots'} %> <small><%= lang->titles->{'admin:bots#sub'} %></small></h1>
+        <ol class="breadcrumb">
+          <li><i class="fa fa-wrench"></i> <a href="/admin"><%= lang->titles->{'admin'} %></a></li>
+          <li class="active"><%= lang->titles->{'admin:bots'} %></li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- Bot list -->
+    <div class="row">
+      <div class="col-lg-9">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h5><%= tl 'Bot list' %></h5>
+          </div>
+          <div class="panel-body">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th><%= tl 'Name' %></th>
+                    <th><%= tl 'Type' %></th>
+                    <th><%= tl 'Scenarios' %></th>
+                    <th></th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+% for my $b (@$bots) {
+                  <tr class="clickable-row" data-href="/admin/bot/<%= $b->{id} %>/view">
+                    <td><%= $b->{id} %></td>
+                    <td><%= $b->{name} %></td>
+                    <td><%= $b->{type} %></td>
+                    <td>
+%   if (@{ $b->{scenarios} }>0) {
+%      for my $scenario (@{ $b->{scenarios} }) {
+                      <div><%= $scenario->{name} %> (<%= $scenario->{event} %>)</div>
+%      }
+%   }
+%   else {
+                      <div><i class="fa fa-exclamation-circle text-danger"></i> <%= tl 'Not set' %></div>
+%   }
+                    </td>
+                    <td>
+                      <span class="<%= $b->{online} ? 'text-success' : 'text-danger' %>"><i class="fa fa-circle"></i></span>
+                    </td>
+                    <td>
+                      <a title="<%= tl 'Edit' %>" class="btn btn-outline btn-primary" href="/admin/bot/<%= $b->{id} %>/edit">
+                        <i class="fa fa-pencil"></i>
+                      </a>
+                      <a title="<%= tl 'Delete' %>" class="btn btn-outline btn-danger" href="/admin/bot/<%= $b->{id} %>/delete">
+                        <i class="fa fa-trash"></i>
+                      </a>
+                    </td>
+                  </tr>
+% }
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="panel-footer">
+            <div class="dropdown text-right">
+              <button class="btn btn-primary btn-outline dropdown-toggle" type="button" data-toggle="dropdown">
+                <%= tl 'Add bot' %> <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu dropdown-menu-right">
+%  my $modules = botplace->bot_modules;
+%  for my $pm (sort keys %$modules) {
+                <li><a href="/admin/bots/add/<%= $modules->{$pm}->type %>">
+                  <i class="<%= $modules->{$pm}->conf->{fa} || 'fa fa-android' %> fa-fw"></i> <%= $modules->{$pm}->type %>
+                </a></li>
+%  }
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Available bot types (experimental for tests) -->
+      <div class="col-lg-3">
+        <div class="panel panel-warning">
+          <div class="panel-heading">
+            <h5><%= tl 'Help' %></h5>
+          </div>
+          <div class="panel-body">
+            <h4><%= tl 'Bot statuses' %></h4>
+            <div><i class="fa fa-circle text-success"></i> <%= tl 'Working' %></div>
+            <div><i class="fa fa-circle text-danger"></i> <%= tl 'Sleeping' %></div>
+          </div>
+        </div>
+    </div>
+
+  </div>
+</div>

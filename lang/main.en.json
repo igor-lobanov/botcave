@@ -1,0 +1,111 @@
+{
+	"errors": {
+
+		"login:nodata":				"No data submitted",
+		"login:email:required":			"Email is required",
+		"login:email:valid":			"Email is not valid",
+		"login:password:required":		"Password is required",
+		"login:password:valid_account":		"Wrong email and password combination",
+
+		"agent_add:nodata":			"No data submitted",
+		"agent_add:email:required":		"Email is required",
+		"agent_add:first_name:required":	"First name is required",
+		"agent_add:email:exist_email":		"Agent with such email is already registered",
+
+		"scenario_add:nodata":			"No data submitted",
+		"scenario_add:name:required":		"Name is required",
+		"scenario_add:event:required":		"Event is required",
+		"scenario_add:event:valid_event":	"Event is not valid",
+
+		"scenario_edit:nodata":			"No data submitted",
+		"scenario_edit:name:required":		"Name is required",
+
+		"scenario_episode_add:nodata":			"No data submitted",
+		"scenario_episode_add:event:required":		"Event is required",
+		"scenario_episode_add:event:valid_event":	"Event is not valid",
+		"scenario_episode_add:module:required":		"Module is required",
+		"scenario_episode_add:module:valid_module":	"Module is not valid",
+		"scenario_episode_add:filterid:valid_filter":	"Filter is not valid",
+
+		"filter_add:nodata":			"No data submitted",
+		"filter_add:name:required":		"Name is required",
+		"filter_add:module:required":		"Module is required",
+		"filter_add:module:valid_module":	"Module is not valid",
+
+		"filter_edit:nodata":			"No data submitted",
+		"filter_edit:name:required":		"Name is required",
+		"filter_edit:module:required":		"Module is required",
+		"filter_edit:module:valid_module":	"Module is not valid",
+
+		"bots_add:nodata":				"No data submitted",
+		"bots_add:name:required":			"Name is required",
+		"bots_add:scenarioid:valid_scenario":		"Wrong scenario",
+
+		"bots_add_telegram:nodata":				"No data submitted",
+		"bots_add_telegram:name:required":			"Name is required",
+		"bots_add_telegram:token:required":			"Token is required",
+		"bots_add_telegram:token:exist_token":			"Bot with such token is already registered",
+		"bots_add_telegram:tg_error":				"Can not get bot info from Telegram",
+		"bots_add_telegram:scenarioid:valid_scenario":		"Wrong scenario",
+		"bots_add_telegram:allowed_updates:valid_update":	"Wrong update type",
+		"bots_add_telegram:max_connections:num":		"Maximum connections must be the number between 1 and 100",
+
+		"bot_edit:nodata":				"No data submitted",
+		"bot_edit:name:required":			"Name is required",
+		"bot_edit:scenarioid:valid_scenario":		"Wrong scenario",
+
+		"bot_edit_telegram:nodata":				"No data submitted",
+		"bot_edit_telegram:name:required":			"Name is required",
+		"bot_edit_telegram:scenarioid:valid_scenario":		"Wrong scenario",
+		"bot_edit_telegram:allowed_updates:valid_update":	"Wrong update type",
+		"bot_edit_telegram:max_connections:num":		"Maximum connections must be the number between 1 and 100",
+
+		"scenario_condition_add:path:required":			"Path to variable is required",
+		"scenario_condition_add:path:valid_path":		"Path to variable is not valid",
+		"scenario_condition_add:operation:required":		"Operation is required",
+		"scenario_condition_add:operation:valid_operation":	"Operation is not valid",
+		"scenario_condition_add:value:required":		"Value is required",
+		"scenario_condition_add:value:valid_value":		"Value is not valid",
+		"scenario_condition_add:nodata":			"No data submitted"
+	},
+
+	"titles": {
+
+		"modal:errors":				"Errors found",
+
+		"welcome":				"Welcome to Bot Cave",
+
+		"admin":				"Admin Board",
+		"admin:agents":				"Agents",
+		"admin:agents#sub":			"Managing agents",
+		"admin:bots":				"Bots",
+		"admin:bots#sub":			"Managing bots",
+		"admin:scenarios":			"Scenarios",
+		"admin:scenarios#sub":			"Managing scenarios",
+		"admin:scenario_add":			"New scenario",
+		"admin:scenario_edit":			"Edit scenario",
+		"admin:scenario_view":			"Scenario view",
+		"admin:scenario_episodes":		"Scenario episodes",
+		"admin:filters":			"Filters",
+		"admin:filter_add":			"New filter",
+		"admin:filter_edit":			"Edit filter",
+		"admin:filters#sub":			"Managing filters",
+		"admin:botinfo":			"View bot info",
+		"admin:botconfig":			"Bot configuration",
+		"admin:addons":				"Addons",
+		"admin:addons#sub":			"Managing addons",
+		"admin:minion":				"Minion",
+
+		"board":				"Desktop",
+		"board:inbox":				"Inbox",
+		"board:inbox#sub":			"Inbox",
+
+		"agent:profile":			"Profile",
+		"agent:settings":			"Settings",
+
+		"login":				"Login",
+		"login#sub":				"Authorization Required",
+		"logout":				"Logout"
+
+	}
+}

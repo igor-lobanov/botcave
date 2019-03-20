@@ -1,0 +1,9 @@
+Welcome to Botcave!
+
+Your agent login credentials:
+
+Email:     <%= $agent->{email} %>
+Password:  <%= $agent->{password} %>
+
+Best wishes,
+Botcave Team

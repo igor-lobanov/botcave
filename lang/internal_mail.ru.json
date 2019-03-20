@@ -1,0 +1,10 @@
+{
+	"titles": {
+
+		"board:internal_mail":			"Внутренняя почта",
+		"board:internal_mail#sub":		"Обмен внутренними сообщениями",
+		"board:internal_mail:inbox":		"Входящие",
+		"board:internal_mail:inbox#sub":	"Входящие сообщения"
+
+	}
+}

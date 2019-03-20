@@ -1,0 +1,13 @@
+{
+
+	"titles": {
+
+		"board:callcenter":	"Колл-центр",
+		"board:callcenter#sub":	"Входящие сообщения Telegram"
+
+	},
+
+	"translations": {
+		"Call Center": "Колл-центр"
+	}
+}

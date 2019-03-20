@@ -1,0 +1,68 @@
+% layout 'default';
+% title lang->titles->{'admin:filter_add'};
+%= include 'include/nav';
+<div id="page-wrapper">
+  <div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="page-header"><%= lang->titles->{'admin:filters'} %> <small><%= lang->titles->{'admin:filters#sub'} %></small></h1>
+        <ol class="breadcrumb">
+          <li><i class="fa fa-wrench"></i> <a href="/admin"><%= lang->titles->{'admin'} %></a></li>
+          <li><a href="/admin/filters"><%= lang->titles->{'admin:filters'} %></a></li>
+          <li class="active"><%= lang->titles->{'admin:filter_add'} %></li>
+        </ol>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-lg-9">
+        <form id="filter-add" action="/admin/filter/add"></form>
+        <div class="panel panel-success">
+          <div class="panel-heading">
+            <h5><%= tl 'Add filter' %></h5>
+          </div>
+          <div class="panel-body">
+            <div class="form-group">
+              <label class="control-label" for="name"><%= tl 'Filter name' %>:</label>
+              <input type="text" class="form-control" name="name" id="filter-add-name" data-form="filter-add" />
+            </div>
+            <div class="form-group">
+              <label class="control-label" for="module"><%= tl 'Module' %></label>
+              <select name="module" class="form-control" id="filter-add-module" data-form="filter-add">
+                <option></option>
+%  for my $module (filter_module_list->each) {
+                <option value="<%= $module %>"><%= $module %></option>
+%  }
+              </select>
+            </div>
+          </div>
+          <div class="panel-footer">
+            <button type="submit" class="btn btn-success btn-outline" data-submit="filter-add">
+              <i class="fa fa-floppy-o"></i> <%= tl 'Add' %>
+            </button>
+            <a class="btn btn-danger btn-outline" href="/admin/filters">
+              <i class="fa fa-ban"></i> <%= tl 'Cancel' %>
+            </a>
+          </div>
+        </div>
+			</div>
+      <div class="col-lg-3">
+        <div class="panel panel-warning">
+          <div class="panel-heading">
+            <h5><%= tl 'Fast help' %></h5>
+          </div>
+          <div class="panel-body">
+            <p>Name is internal name which will be used to identify filter in GUI.</p>
+            <p>Module is filter module from list. Filter module is special module which allow to create conditions for scenario execution.</p>
+          </div>
+        </div>
+			</div>
+		</div>
+
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</div>
+<!-- /#page-wrapper -->

@@ -1,0 +1,12 @@
+{
+    "errors": {
+        "filter_config_telegram_update:path:required":             "Path to variable is required",
+        "filter_config_telegram_update:path:valid_path":           "Path to variable is not valid",
+        "filter_config_telegram_update:operation:required":        "Operation is required",
+        "filter_config_telegram_update:operation:valid_operation": "Operation is not valid",
+        "filter_config_telegram_update:value:required":            "Value is required",
+        "filter_config_telegram_update:value:empty_value":         "Value is required",
+        "filter_config_telegram_update:value:valid_value":         "Value is not valid",
+        "filter_config_telegram_update:nodata":                    "No data submitted"
+    }
+}

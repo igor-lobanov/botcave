@@ -1,0 +1,124 @@
+% layout 'default';
+% title lang->titles->{'admin:botinfo'};
+%= include 'include/nav';
+<div id="page-wrapper">
+  <div class="container-fluid">
+    
+    <!-- Page Heading -->
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="page-header"><%= lang->titles->{'admin:bots'} %> <small><%= lang->titles->{'admin:bots#sub'} %></small></h1>
+        <ol class="breadcrumb">
+          <li><i class="fa fa-wrench"></i> <a href="/admin"><%= lang->titles->{'admin'} %></a></li>
+          <li><a href="/admin/bots"><%= lang->titles->{'admin:bots'} %></a></li>
+          <li class="active"><%= tl 'Bot' %> <%= $bot->{name} %></li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-9">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h5><%= tl 'Bot' %> <%= $bot->{name} %></h5>
+          </div>
+          <div class="panel-body">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td><%= tl 'Name' %>:</td>
+                  <td><%= $bot->{name} %></td>
+                </tr>
+                <tr>
+                  <td><%= tl 'Type' %>:</td>
+                  <td><%= $bot->{type} %></td>
+                </tr>
+                <tr>
+                  <td><%= tl 'Scenarios' %>:</td>
+                  <td>
+%   if (~~@{ $bot->{scenarios} }) {
+                    <ul class="list-group">
+%      for my $scenario (@{ $bot->{scenarios} }) {
+                      <li class="list-group-item">
+                        <div><%= $scenario->{name} %> (<%= $scenario->{event} %>)</div>
+%        if ($scenario->{description}) {
+                        <div class="small"><%= $scenario->{description} %></div>
+%        }
+                      </li>
+%      }
+                    </ul>
+%   }
+%   else {
+                    <div><i class="fa fa-exclamation-circle text-danger"></i> <%=  tl 'Not set' %></div>
+%   }
+                  </td>
+                </tr>
+                <tr>
+                  <td><%= tl 'Allowed updates' %> <code>allowed_updates</code>:</td>
+                  <td>
+                    <ul class="list-group">
+% if ($bot->{conf}{allowed_updates} && @{$bot->{conf}{allowed_updates}}) {
+%   for (@{$bot->{conf}{allowed_updates}}) {
+                      <li class="list-group-item"><%= $_ %></li>
+%   }
+% }
+% else {
+                      <li class="list-group-item"><%= tl 'All types' %></li>
+% }
+                    </ul>
+                  </td>
+                </tr>
+                <tr>
+                  <td><%= tl 'Maximum connections' %> <code>max_connections</code>:</td>
+                  <td><%= $bot->{conf}{max_connections} || tl 'default' %></td>
+                </tr>
+% if ($bot->{data}{id}) {
+                <tr>
+                  <td>Telegram ID <code>id</code>:</td>
+                  <td><%= $bot->{data}{id} %></td>
+                </tr>
+% }
+% if ($bot->{data}{first_name}) {
+                <tr>
+                  <td><%= tl 'First name' %> <code>first_name</code>:</td>
+                  <td><%= $bot->{data}{first_name} %></td>
+                </tr>
+% }
+% if ($bot->{data}{last_name}) {
+                <tr>
+                  <td><%= tl 'Last name' %> <code>last_name</code>:</td>
+                  <td><%= $bot->{data}{last_name} %></td>
+                </tr>
+% }
+% if ($bot->{username}) {
+                <tr>
+                  <td><%= tl 'Username' %> <code>username</code>:</td>
+                  <td><%= $bot->{username} %></td>
+                </tr>
+% }
+              </tbody>
+            </table>
+          </div>
+          <div class="panel-footer">
+            <a class="btn btn-danger btn-outline"
+              href="/admin/bots"><i class="fa fa-undo"></i> <%= tl 'Back' %></a>
+            <a class="btn btn-primary btn-outline"
+              href="/admin/bot/<%= $bot->{id} %>/edit"><i class="fa fa-edit"></i> <%= tl 'Edit' %></a>
+%   if ($bot->{online}) {
+            <a class="btn btn-danger btn-outline"
+              href="/admin/bot/<%= $bot->{id} %>/offline"><i class="fa fa-pause"></i> <%= tl 'Stop bot' %></a>
+%   }
+%   else {
+            <a class="btn btn-primary btn-outline"
+              href="/admin/bot/<%= $bot->{id} %>/online"><i class="fa fa-play"></i> <%= tl 'Start bot' %></a>
+%   }
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3">
+      </div>
+    </div>
+
+  </div>
+</div>

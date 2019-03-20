@@ -1,0 +1,9 @@
+{
+	"titles": {
+
+		"board:internal_mail":			"Internal Mail",
+		"board:internal_mail#sub":		"Internal messages exchange",
+		"board:internal_mail:inbox":		"Inbox",
+		"board:internal_mail:inbox#sub":	"Incoming messages"
+	}
+}

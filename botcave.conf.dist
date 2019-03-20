@@ -1,0 +1,36 @@
+{
+    secrets      => [
+        'secret_phrase'
+    ],
+
+    language    => {
+        default    => 'en'
+    },
+
+    pg          => 'postgresql://pguser:pgpass@pgserver/botcave',
+
+    mail        => {
+        from        => 'admin@localhost',
+        encoding    => 'base64',
+        type        => 'text/plain',
+        how         => 'sendmail',
+        howargs     => [
+            '/usr/sbin/sendmail -t'
+        ]
+    },
+
+    fqdn        => 'https://botcave.localhost',
+
+    minion      => {
+        Pg  => 'postgresql://pguser:pgpass@pgserver/botcave'
+    },
+
+    mq          => {
+        Redis   => {
+            server      => 'localhost:6379',
+            reconnect   => 60,
+            every       => 1000000,
+        }
+    }
+}
+

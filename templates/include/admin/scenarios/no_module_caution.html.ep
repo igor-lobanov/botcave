@@ -1,0 +1,2 @@
+<div>Event module for <b><%= $scenario->{event} %></b> event is not installed.</div>
+<div>You can not create episode without event module.</div>

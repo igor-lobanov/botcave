@@ -1,0 +1,90 @@
+% layout 'default';
+% title lang->titles->{'admin:scenarios'};
+%= include 'include/nav';
+<div id="page-wrapper">
+  <div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="page-header"><%= lang->titles->{'admin:scenarios'} %> <small><%= lang->titles->{'admin:scenarios#sub'} %></small></h1>
+        <ol class="breadcrumb">
+          <li><i class="fa fa-wrench"></i> <a href="/admin"><%= lang->titles->{'admin'} %></a></li>
+          <li class="active"><%= lang->titles->{'admin:scenarios'} %></li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- Scenarios -->
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h5><%= tl 'Scenarios list' %></h5>
+          </div>
+          <div class="panel-body">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th><%= tl 'Name' %></th>
+                    <th><%= tl 'Event' %></th>
+                    <th><%= tl 'Description' %></th>
+                    <th><%= tl 'Episodes' %></th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody>
+% for my $scenario (@$scenarios) {
+                  <tr class="clickable-row" data-href="/admin/scenario/<%= $scenario->{id} %>">
+                    <td><%= $scenario->{id} %></td>
+                    <td><%= $scenario->{name} %></td>
+                    <td><%= $scenario->{event} %></td>
+                    <td><%= $scenario->{description} %></td>
+                    <td>
+                      <ol>
+%   for my $episode (@{ $scenario->{episodes} || [] }) {
+                        <li>
+                        <%= $episode->{module} %>
+%      if ($episode->{description}) {
+                          <div class="small"><%= $episode->{description} %></div>
+%      }
+                        </li>
+%   }
+                      </ol>
+                    </td>
+                    <td nowrap>
+                      <a title="<%= tl 'Edit scenario' %>" data-toggle="tooltip" class="btn btn-primary btn-outline"
+                        href="/admin/scenario/<%= $scenario->{id} %>/edit">
+                        <i class="fa fa-pencil"></i>
+                      </a>
+                      <a title="<%= tl 'Edit scenario episodes' %>" data-toggle="tooltip" class="btn btn-primary btn-outline"
+                        href="/admin/scenario/<%= $scenario->{id} %>/episodes">
+                        <i class="fa fa-film"></i>
+                      </a>
+                      <a title="<%= tl 'Delete scenario' %>" data-toggle="tooltip" class="btn btn-danger btn-outline js-confirm"
+                        data-confirm-text="<%= tl 'Are you really wish to delete scenario %s?', $scenario->{name} %>"
+                        href="/admin/scenario/<%= $scenario->{id} %>/delete">
+                        <i class="fa fa-trash"></i>
+                      </a>
+                    </td>
+                  </tr>
+% }
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="panel-footer">
+            <div class="text-right">
+              <a title="<%= tl 'Add scenario' %>" class="btn btn-primary btn-outline" href="/admin/scenario/add">
+                <%= tl 'Add scenario' %>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

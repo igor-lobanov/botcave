@@ -1,0 +1,84 @@
+% layout 'default';
+% title lang->titles->{'admin:scenario_view'};
+%= include 'include/nav';
+<div id="page-wrapper">
+  <div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="page-header"><%= lang->titles->{'admin:scenarios'} %> <small><%= lang->titles->{'admin:scenarios#sub'} %></small></h1>
+        <ol class="breadcrumb">
+          <li><i class="fa fa-wrench"></i> <a href="/admin"><%= lang->titles->{'admin'} %></a></li>
+          <li><a href="/admin/scenarios"><%= lang->titles->{'admin:scenarios'} %></a></li>
+          <li class="active"><%= $scenario->{name} %></li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="row">
+      
+      <div class="col-lg-9">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h5><%= tl 'Scenario' %> <%= $scenario->{name} %></h5>
+          </div>
+          <div class="panel-body">
+            <table class="table">
+              <tbody>
+                <tr>
+                  <td><%= tl 'Event' %>:</td>
+                  <td><%= $scenario->{event} %></td>
+                </tr>
+                <tr>
+                  <td><%= tl 'Description' %>:</td>
+                  <td><%= $scenario->{description} %></td>
+                </tr>
+                <tr>
+                  <td><%= tl 'Episodes' %>:</td>
+                  <td>
+% if ($scenario->{episodes} && @{ $scenario->{episodes} }) {
+                    <ul class="list-group">
+%   for my $episode (@{ $scenario->{episodes} }) {
+                      <li class="list-group-item">
+                        <div><%= $episode->{module} %></div>
+%     if ($episode->{description}) {
+                        <div class="small"><%= $episode->{description} %></div>
+%     }
+%     if ($episode->{filters} && @{ $episode->{filters} }) {
+                        <div><%= tl 'Filters' %>:</div>
+                        <ul>
+%       for my $filter (@{ $episode->{filters} }) {
+                          <li><%= $filter->{name} %></li>
+%       }
+                        </ul>
+%     }
+                      </li>
+%   }
+                    </ul>
+% }
+% else {
+                    <div><%= tl 'No episodes' %></div>
+% }
+                  </td>
+                </tr>
+
+              </tbody>
+            </table>
+          </div>
+          <div class="panel-footer">
+            <a class="btn btn-danger btn-outline"
+              href="/admin/scenarios"><i class="fa fa-undo"></i> <%= tl 'Back' %></a>
+            <a class="btn btn-primary btn-outline"
+              href="/admin/scenario/<%= $scenario->{id} %>/episodes"><i class="fa fa-film"></i> <%= tl 'Episodes' %></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-3">
+      </div>
+
+    </div>
+
+  </div>
+</div>

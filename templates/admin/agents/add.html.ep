@@ -1,0 +1,39 @@
+% layout 'default';
+% title lang->titles->{'admin'};
+%= include 'include/nav';
+<div id="page-wrapper">
+  <div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="page-header"><%= lang->titles->{'admin:agents'} %> <small><%= lang->titles->{'admin:agents#sub'} %></small></h1>
+        <ol class="breadcrumb">
+          <li><i class="fa fa-wrench"></i> <a href="/admin"><%= lang->titles->{'admin'} %></a></li>
+          <li><a href="/admin/agents"><%= lang->titles->{'admin:agents'} %></a></li>
+          <li class="active">Add user</li>
+        </ol>
+      </div>
+      <form id="agent-add" action="/admin/agent/add"></form>
+      <div class="form-group">
+        <label class="control-label" for="first_name"><%= tl 'First name' %>:</label>
+        <input type="text" class="form-control" name="first_name" id="agent-add-first-name" data-form="agent-add" />
+      </div>
+      <div class="form-group">
+        <label class="control-label" for="last_name"><%= tl 'Last name' %>:</label>
+        <input type="text" class="form-control" name="last_name" id="agent-add-last-name" data-form="agent-add" />
+      </div>
+      <div class="form-group">
+        <label class="control-label" for="email"><%= tl 'Email address' %>:</label>
+        <input type="email" class="form-control" name="email" id="agent-add-email" data-form="agent-add" />
+      </div>
+      <div class="form-group">
+        <button type="submit" class="btn btn-success" data-submit="agent-add"><%= tl 'Add' %></button>
+        <a class="btn btn-danger" href="/admin/agents"><%= tl 'Cancel' %></a>
+      </div>
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</div>
+<!-- /#page-wrapper -->
+%= include 'include/modal', modal => { id => 'agent-add-modal' };

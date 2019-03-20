@@ -1,0 +1,5 @@
+<p><u>Name</u> is internal name which will be used to identify bot in GUI.</p>
+<p><u>Bot API token</u> is bot identifier in Telegram. If you have registered telegram bot you know what is it.</p>
+<p>You can setup one or more <u>scenarios</u> for your bot. Each scenario will be executed on related event.</p>
+<p><u>Allowed updates</u> is Telegram Bot API term. This field determines which kinds of updates your bot will process. Note that empty list means that Telegram will send your bot all kinds of updates.</p>
+<p><u>Maximum connections</u> is Telegram Bot API term. It determines how many connections can open Telegram to your bot webhook. Can be the number from 1 to 100. By default Telegram uses value 40.</p>

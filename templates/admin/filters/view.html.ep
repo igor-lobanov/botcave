@@ -1,0 +1,52 @@
+% layout 'default';
+% title lang->titles->{'admin:filter_view'};
+%= include 'include/nav';
+<div id="page-wrapper">
+  <div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="page-header"><%= lang->titles->{'admin:filters'} %> <small><%= lang->titles->{'admin:filters#sub'} %></small></h1>
+        <ol class="breadcrumb">
+          <li><i class="fa fa-wrench"></i> <a href="/admin"><%= lang->titles->{'admin'} %></a></li>
+          <li><a href="/admin/filters"><%= lang->titles->{'admin:filters'} %></a></li>
+          <li class="active"><%= $filter->{name} %></li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="row">
+
+      <div class="col-lg-9">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h5><%= tl 'Filter' %> <%= $filter->{name} %></h5>
+          </div>
+          <div class="panel-body">
+            <div class="table-responsive">
+              <table class="table">
+                <tr>
+                  <td><%= tl 'Module' %></td>
+                  <td><%= $filter->{module} %></td>
+                </tr>
+              </table>
+            </div>
+          </div>
+          <div class="panel-footer">
+            <a class="btn btn-danger btn-outline" href="/admin/filters"><i class="fa fa-undo"></i> <%= tl 'Back' %></a>
+            <a class="btn btn-primary btn-outline" href="/admin/filter/<%= $filter->{id} %>/edit"><i class="fa fa-pencil"></i> <%= tl 'Edit' %></a>
+%  if ($filter->{configurable}) {
+            <a class="btn btn-primary btn-outline" href="/admin/filter/<%= $filter->{id} %>/config"><i class="fa fa-cog"></i> <%= tl 'Configure' %></a>
+%  }
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-lg-3">
+      </div>
+
+    </div>
+
+  </div>
+</div>

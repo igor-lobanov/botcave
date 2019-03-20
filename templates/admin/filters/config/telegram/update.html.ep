@@ -1,0 +1,128 @@
+% layout 'default';
+% title lang->titles->{'admin:filter_config'};
+%= include 'include/nav';
+<div id="page-wrapper">
+  <div class="container-fluid">
+    
+    <!-- Page Heading -->
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="page-header"><%= lang->titles->{'admin:filters'} %> <small><%= lang->titles->{'admin:filters#sub'} %></small></h1>
+        <ol class="breadcrumb">
+          <li><i class="fa fa-wrench"></i> <a href="/admin"><%= lang->titles->{'admin'} %></a></li>
+          <li><a href="/admin/filters"><%= lang->titles->{'admin:filters'} %></a></li>
+          <li><a href="/admin/filter/<%= $filter->{id} %>"><%= $filter->{name} %></a></li>
+          <li class="active"><%= tl 'Configuration' %></li>
+        </ol>
+      </div>
+    </div>
+
+    <!-- Conditions -->
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h4><%= tl 'Conditions' %></h4>
+          </div>
+          <div class="panel-body">
+            <table class="table table-hover table-striped">
+              <thead>
+                <tr>
+                  <th><%= tl 'Update field' %></th>
+                  <th><%= tl 'Operation' %></th>
+                  <th><%= tl 'Value(s)' %></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+%  my $num = 0;
+%  for my $condition (@{ $filter->{conf}{conditions} || [] }) {
+                <tr>
+                  <td><%= $condition->{path} %></td>
+                  <td>
+                    <%= $condition->{negation} ? tl('not') . ' ' : '' %>
+                    <%= tl tg_types->operation_definition($condition->{operation})->{name} %>
+                  </td>
+                  <td>
+%     for my $val (@{ $condition->{values} || [] }) {
+                    <div><%= $val %></div>
+%     }
+                  </td>
+                  <td>
+                    <a title="<%= tl 'Delete condition' %>" data-toggle="tooltip" 
+                      href="/admin/filter/<%= $filter->{id} %>/util/condition_delete?num=<%= $num++ %>" class="text-danger pull-right">
+                      <i class="fa fa-times"></i>
+                    </a>
+                  </td>
+                </tr>
+%  }
+              </tbody>
+            </table>
+          </div>
+          <div class="panel-footer">
+            <a class="btn btn-danger btn-outline" href="/admin/filter/<%= $filter->{id} %>"><i class="fa fa-undo"></i> <%= tl 'Back' %></a>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- New condition -->
+    <div class="row">
+      <div class="col-lg-9">
+        <form id="filter-condition-add" action="/admin/filter/<%= $filter->{id} %>/config"></form>
+        <input type="hidden" name="root" value="-update" data-form="filter-condition-add" />
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h4><%= tl 'Add condition' %></h4>
+          </div>
+          <div class="panel-body">
+            <div class="form-group">
+              <label class="control-label"><%= tl 'Update field' %></label>
+              <div id="tree" data-related-form="filter-condition-add"></div>
+              <div class="input-group">
+                <input class="form-control js-tree-path" name="path" data-form="filter-condition-add" value=""
+                  placeholder="<%= tl 'Select field from tree' %>" type="text" id="fld-path" data-tree="tree" readonly />
+                <span id="fld-path-clear" class="btn btn-danger input-group-addon js-tree-path-clear" data-tree="tree">
+                  <i class="fa fa-times"></i>
+                </span>
+              </div>
+            </div>
+            <div class="form-group">
+              <label class="control-label"><%= tl 'Operation' %></label>
+              <div class="input-group">
+                <span class="input-group-addon">
+                  <input type="checkbox" name="negation" data-form="filter-condition-add"
+                    class="js-operation-negation" data-tree="tree" value="1" /> <%= tl 'Not' %>
+                </span>
+                <select id="select-operation" name="operation" data-form="filter-condition-add" class="form-control"></select>
+              </div>
+            </div>
+            <div class="js-filter-operands" data-tree="tree"></div>
+          </div>
+          <div class="panel-footer">
+            <button data-submit="filter-condition-add" class="btn btn-primary btn-outline">
+              <i class="fa fa-floppy-o"></i> <%= tl 'Add condition' %>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- /.container-fluid -->
+</div><!-- /#page-wrapper -->
+
+% content jsexe => begin
+<script>
+(function( $ ) {
+
+  /*
+   *  Filter condition form
+   */
+  var tree = $('#tree').telegram_type_tree({
+    dataSource: '<%= url_for("/admin/filter/" . $filter->{id} . "/util/tree?root=-update") %>',
+    operationSource: '<%= url_for("/admin/filter/" . $filter->{id} . "/util/operations?root=-update") %>'
+  });
+
+}( jQuery ));
+</script>
+% end

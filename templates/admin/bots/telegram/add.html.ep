@@ -1,0 +1,77 @@
+% layout 'default';
+% title lang->titles->{'admin'};
+%= include 'include/nav';
+<div id="page-wrapper">
+  <div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="page-header"><%= lang->titles->{'admin:bots'} %> <small><%= lang->titles->{'admin:bots#sub'} %></small></h1>
+        <ol class="breadcrumb">
+          <li><i class="fa fa-wrench"></i> <a href="/admin"><%= lang->titles->{'admin'} %></a></li>
+          <li><a href="/admin/bots"><%= lang->titles->{'admin:bots'} %></a></li>
+          <li class="active"><%= tl 'Add bot' %></li>
+        </ol>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-9">
+        <form id="bots-add" action="/admin/bots/add/Telegram"></form>
+        <div class="panel panel-success">
+          <div class="panel-heading">
+            <h5><%= tl 'Add bot' %></h5>
+          </div>
+          <div class="panel-body">
+            <div class="form-group">
+              <label class="control-label" for="bots-add-name"><%= tl 'Name' %>:</label>
+              <input type="text" class="form-control" name="name" id="bots-add-name" data-form="bots-add" />
+            </div>
+            <div class="form-group">
+              <label class="control-label" for="bots-add-token"><%= tl 'Bot API token' %>:</label>
+              <input type="text" class="form-control" name="token" id="bots-add-token" data-form="bots-add" />
+            </div>
+            <div class="form-group">
+              <label class="control-label" for="bots-add-scenarioid"><%= tl 'Scenarios' %>:</label>
+              <select multiple name="scenarioid" class="form-control js-select2-with-description"
+                id="bots-add-scenarioid" data-form="bots-add"
+                data-close-on-select="false">
+%  for my $scenario (@$scenarios) {
+                <option data-description="<%= $scenario->{description} %>" value="<%= $scenario->{id} %>"><%= $scenario->{name} %></option>
+%  }
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="control-label" for="bots-add-allowed-updates"><%= tl 'Allowed updates' %>:</label>
+              <select multiple class="form-control js-select2" name="allowed_updates"
+                id="bots-add-allowed-updates" data-form="bots-add"
+                data-close-on-select="false">
+%  for my $au (@{ metabot('Telegram')->conf->{allowed_updates} // [] }) {
+                <option value="<%= $au %>"><%= $au %></option>
+%  }
+              </select>
+            </div>
+            <div class="form-group">
+              <label class="control-label" for="bots-add-max-connections"><%= tl 'Max connections' %> (1-100):</label>
+              <input type="text" class="form-control" name="max_connections" id="bots-add-max-connections" data-form="bots-add" />
+            </div>
+          </div>
+          <div class="panel-footer">
+            <button type="submit" class="btn btn-success btn-outline" data-submit="bots-add"><i class="fa fa-floppy-o"></i> <%= tl 'Add' %></button>
+            <a class="btn btn-danger btn-outline" href="/admin/bots"><i class="fa fa-ban"></i> <%= tl 'Cancel' %></a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="panel panel-warning">
+          <div class="panel-heading">
+            <h5><%= tl 'Help' %></h5>
+          </div>
+          <div class="panel-body">
+            <%= include_tl 'include/admin/bots/telegram/add_help' %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

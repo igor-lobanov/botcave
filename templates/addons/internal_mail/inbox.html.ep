@@ -1,0 +1,21 @@
+% layout 'default';
+% title lang->titles->{'board:internal_mail'};
+%= include 'include/nav';
+<div id="page-wrapper">
+  <div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="page-header"><%= lang->titles->{'board:internal_mail'} %> <small><%= lang->titles->{'board:internal_mail#sub'} %></small></h1>
+        <ol class="breadcrumb">
+          <li><i class="fa fa-cogs"></i> <a href="/board"><%= lang->titles->{'board'} %></a></li>
+          <li><a href="/board/intmail"><%= lang->titles->{'board:internal_mail'} %></a></li>
+          <li class="active"><%= lang->titles->{'board:internal_mail:inbox'} %></li>
+        </ol>
+      </div>
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</div>
+<!-- /#page-wrapper -->

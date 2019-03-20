@@ -1,0 +1,17 @@
+=pod
+
+=encoding utf8
+
+=head1 SYNOPSIS
+
+Botcave is open-source software which aims to make easier Telegram bot creating.
+
+=over
+
+=back
+
+=head1 AUTHOR
+
+Igor Lobanov
+
+=cut

@@ -1,0 +1,54 @@
+% layout 'default';
+% title lang->titles->{'admin:addons'};
+%= include 'include/nav';
+<div id="page-wrapper">
+  <div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="page-header"><%= lang->titles->{'admin:addons'} %> <small><%= lang->titles->{'admin:addons#sub'} %></small></h1>
+        <ol class="breadcrumb">
+          <li><i class="fa fa-wrench"></i> <a href="/admin"><%= lang->titles->{'admin'} %></a></li>
+          <li class="active"><%= lang->titles->{'admin:addons'} %></li>
+        </ol>
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h5><%= tl 'Addons list' %></h5>
+          </div>
+          <div class="panel-body">
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>#</th>
+                    <th><%= tl 'Module' %></th>
+                  </tr>
+                </thead>
+                <tbody>
+% for my $ad (@$addons) {
+                  <tr class="clickable-row<%= $ad->{active} ? ' success' : ' warning' %>" data-href="/admin/addon/<%= $ad->{id} %>/view">
+                    <td><%= $ad->{id} %></td>
+                    <td><%= $ad->{module} %></td>
+                  </tr>
+% }
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <!-- /.panel-body -->
+          <div class="panel-footer">
+            <div class="text-right">
+              <a title="<%= tl 'Add addon' %>" class="btn btn-primary btn-outline" href="/admin/addons/add">
+                <%= tl 'Add addon' %>
+              </a>
+            </div>
+          </div>
+        </div>
+        <!-- /.panel -->
+      </div>
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</div>
+<!-- /#page-wrapper -->

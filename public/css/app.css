@@ -1,0 +1,19 @@
+.clickable-row {
+    cursor: pointer;
+}
+.underlined {
+    border-bottom: 1px dashed #3c763d;
+}
+/* select2 customization */
+.select2-container--classic .select2-results__option:before {
+    content: '\f096\20';
+    font-family: FontAwesome;
+}
+.select2-container--classic .select2-results__option[aria-selected=true]:before {
+    content: '\f046\20';
+    font-family: FontAwesome;
+}
+.select2-container--classic .select2-results__option--highlighted[aria-selected] {
+    background-color: #8af;
+    color: white;
+}

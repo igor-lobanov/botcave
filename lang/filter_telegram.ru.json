@@ -1,0 +1,12 @@
+{
+    "errors": {
+        "filter_config_telegram_update:path:required":             "Требуется указать путь к переменной",
+        "filter_config_telegram_update:path:valid_path":           "Неверно указан путь к переменной",
+        "filter_config_telegram_update:operation:required":        "Требуется указать операцию",
+        "filter_config_telegram_update:operation:valid_operation": "Неверно указана операция",
+        "filter_config_telegram_update:value:required":            "Требуется указать значение",
+        "filter_config_telegram_update:value:empty_value":         "Требуется указать значение",
+        "filter_config_telegram_update:value:valid_value":         "Неверно указано значение",
+        "filter_config_telegram_update:nodata":                    "Нет данных"
+    }
+}

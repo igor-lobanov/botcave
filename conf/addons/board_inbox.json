@@ -1,0 +1,12 @@
+{
+	"addons": {
+		"board_inbox": {
+			"name": "Inbox",
+			"section": "board",
+			"menu": {
+				"title": "Inbox",
+				"route": "/board/inbox"
+			}
+		}
+	}
+}

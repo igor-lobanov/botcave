@@ -1,0 +1,61 @@
+% layout 'default';
+% title lang->titles->{'admin:addoninfo'};
+%= include 'include/nav';
+<div id="page-wrapper">
+  <div class="container-fluid">
+    <!-- Page Heading -->
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="page-header"><%= lang->titles->{'admin:addons'} %> <small><%= lang->titles->{'admin:addons#sub'} %></small></h1>
+        <ol class="breadcrumb">
+          <li><i class="fa fa-wrench"></i> <a href="/admin"><%= lang->titles->{'admin'} %></a></li>
+          <li><a href="/admin/addons"><%= lang->titles->{'admin:addons'} %></a></li>
+          <li><a href="/admin/addon/<%= $addon->{id} %>/view"><%= $addon->{module} %></a></li>
+          <li class="active"><%= tl 'Configure' %></li>
+        </ol>
+        <div class="panel panel-info">
+          <div class="panel-heading">
+            <h4><%= tl 'Configuration' %> <%= $addon->{module} %></h4>
+          </div>
+          <div class="panel-body">
+%  if (exists($addon->{config}{actions})) {
+%    for my $event (keys %{$addon->{config}{actions}}) {
+%      for my $module (@{ $addon->{config}{actions}{$event} }) {
+            <div><%= $event %> =&gt; <%= $module %></div>
+%      }
+%    }
+%  }
+            <div class="form-group">
+              <label>Event</label>
+              <select class="form-control">
+                <option></option>
+                <option value="message">message</option>
+                <option value="edited_message">edited_message</option>
+                <option value="channel_post">channel_post</option>
+                <option value="edited_channel_post">edited_channel_post</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Action</label>
+              <select class="form-control">
+                <option></option>
+              </select>
+            </div>
+          </div>
+          <div class="panel-footer">
+            <button class="btn btn-primary"
+              title="<%= tl 'Save changes' %>" data-toggle="tooltip"><%= tl 'Save' %></button>
+            <a class="btn btn-danger"
+              title="<%= tl 'Discard changes' %>" data-toggle="tooltip"
+              href="/admin/addon/<%= $addon->{id} %>/view"><%= tl 'Cancel' %></a>
+          </div>
+          <!-- /.panel-body -->
+        </div>
+        <!-- /.panel -->
+      </div>
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+</div>
+<!-- /#page-wrapper -->

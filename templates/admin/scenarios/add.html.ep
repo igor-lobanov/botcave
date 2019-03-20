@@ -1,0 +1,56 @@
+% layout 'default';
+% title lang->titles->{'admin:scenario_add'};
+%= include 'include/nav';
+<div id="page-wrapper">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-lg-12">
+        <!-- Page Heading -->
+        <h1 class="page-header"><%= lang->titles->{'admin:scenarios'} %> <small><%= lang->titles->{'admin:scenarios#sub'} %></small></h1>
+        <ol class="breadcrumb">
+          <li><i class="fa fa-wrench"></i> <a href="/admin"><%= lang->titles->{'admin'} %></a></li>
+          <li><a href="/admin/scenarios"><%= lang->titles->{'admin:scenarios'} %></a></li>
+          <li class="active"><%= lang->titles->{'admin:scenario_add'} %></li>
+        </ol>
+      </div>
+    </div>
+    <!-- /.row -->
+    <div class="row">
+      <div class="col-lg-12">
+        
+        <form id="scenario-add" action="/admin/scenario/add"></form>
+        
+        <div class="form-group">
+          <label class="control-label" for="name"><%= tl 'Scenario name' %>:</label>
+          <input type="text" class="form-control" name="name" id="scenario-add-name" data-form="scenario-add" />
+        </div>
+
+        <div class="form-group">
+          <label class="control-label" for="event"><%= tl 'Event' %></label>
+          <select name="event" class="form-control" id="scenario-add-event" data-form="scenario-add">
+            <option></option>
+%  for my $event (event_list->each) {
+            <option value="<%= $event %>"><%= $event %></option>
+%  }
+            </select>
+        </div>
+        
+        <div class="form-group">
+          <label class="control-label" for="description"><%= tl 'Scenario description' %>:</label>
+          <textarea class="form-control" name="description" id="scenario-add-description" data-form="scenario-add" rows="5"></textarea>
+        </div>
+        
+        <div class="form-group">
+          <button type="submit" class="btn btn-success btn-outline" data-submit="scenario-add">
+            <i class="fa fa-floppy-o"></i> <%= tl 'Add' %>
+          </button>
+          <a class="btn btn-danger btn-outline" href="/admin/scenarios">
+            <i class="fa fa-ban"></i> <%= tl 'Cancel' %>
+          </a>
+        </div>
+      
+      </div>
+    </div>
+
+  </div>
+</div>

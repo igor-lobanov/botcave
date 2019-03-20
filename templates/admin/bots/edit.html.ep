@@ -1,0 +1,81 @@
+% layout 'default';
+% title lang->titles->{'admin'};
+%= include 'include/nav';
+<div id="page-wrapper">
+  <div class="container-fluid">
+
+    <!-- Page Heading -->
+    <div class="row">
+      <div class="col-lg-12">
+        <h1 class="page-header"><%= lang->titles->{'admin:bots'} %> <small><%= lang->titles->{'admin:bots#sub'} %></small></h1>
+        <ol class="breadcrumb">
+          <li><i class="fa fa-wrench"></i> <a href="/admin"><%= lang->titles->{'admin'} %></a></li>
+          <li><a href="/admin/bots"><%= lang->titles->{'admin:bots'} %></a></li>
+          <li><a href="/admin/bot/<%= $bot->{id} %>/view"><%= tl 'Bot' %> <%= $bot->{name} %></a></li>
+          <li class="active"><%= tl 'Edit bot configuration' %></li>
+        </ol>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-9">
+        <form id="bots-edit" action="/admin/bot/<%= $bot->{id} %>/edit"></form>
+        <div class="panel panel-success">
+          <div class="panel-heading">
+            <h5><%= tl 'Edit bot' %> <%= $bot->{name} %></h5>
+          </div>
+          <div class="panel-body">
+            <div class="form-group">
+              <label class="control-label" for="bots-edit-name"><%= tl 'Name' %>:</label>
+              <input type="text" class="form-control" name="name" value="<%= $bot->{name} %>" id="bots-edit-name" data-form="bots-edit" />
+            </div>
+            <div class="form-group">
+              <label class="control-label" for="bots-edit-scenarioid"><%= tl 'Scenario' %></label>
+              <select multiple name="scenarioid" class="form-control js-select2" id="bots-edit-scenarioid" data-form="bots-edit">
+%  my %bot_scenarios = map {$_->{id} => 1} @{ $bot->{scenarios} };
+%  for my $scenario (@$scenarios) {
+                <option <%= $bot_scenarios{ $scenario->{id} } ? 'selected' : '' %> value="<%= $scenario->{id} %>">
+                  <%= $scenario->{name} %>
+                </option>
+%  }
+              </select>
+            </div>
+          </div>
+          <div class="panel-footer">
+            <div class="form-group">
+              <button type="submit" class="btn btn-success btn-outline" data-submit="bots-edit">
+                <i class="fa fa-floppy-o"></i> <%= tl 'Save' %>
+              </button>
+              <a class="btn btn-danger btn-outline" href="/admin/bots">
+                <i class="fa fa-ban"></i> <%= tl 'Cancel' %>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-3">
+        <div class="panel panel-warning">
+          <div class="panel-heading">
+            <h5><%= tl 'Fast help' %></h5>
+          </div>
+          <div class="panel-body">
+            <div>Name is internal name which will be used to identify bot in GUI.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+% content jsexe => begin
+<script>
+(function( $ ) {
+
+  /*
+   *  Select2
+   */
+  $('.js-select2').select2({theme: "classic", closeOnSelect: false});
+
+}( jQuery ));
+</script>
+% end
